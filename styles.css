@@ -1,8 +1,14 @@
 /* ---------- Fonts (bundled locally, work offline) ---------- */
 @font-face {
-  font-family: "Vazirmatn";
-  src: url("assets/fonts/Vazirmatn.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "IRMitra";
+  src: url("assets/fonts/IRMitra.woff2") format("woff2");
+  font-weight: 100 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IRMitra";
+  src: url("assets/fonts/IRMitra-Bold.woff2") format("woff2");
+  font-weight: 600 900;
   font-display: swap;
 }
 @font-face {
@@ -10,6 +16,15 @@
   src: url("assets/fonts/Inter.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
+}
+
+/* Same Inter file, scaled down to sit visually level with Mitra in Persian text */
+@font-face {
+  font-family: "Inter Fa";
+  src: url("assets/fonts/Inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  size-adjust: 84%;
 }
 
 /* ---------- Theme tokens ---------- */
@@ -59,7 +74,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Vazirmatn", "Inter", Tahoma, system-ui, sans-serif;
+  font-family: "IRMitra", "Inter", Tahoma, serif;
   font-size: 16px;
   line-height: 1.9;
   transition: background-color .25s, color .25s;
@@ -68,8 +83,11 @@ html[data-lang="en"] body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.7;
 }
-/* Latin words inside Persian text use Inter; Persian falls through to Vazirmatn */
-html[data-lang="fa"] body { font-family: "Vazirmatn", Tahoma, sans-serif; }
+/* Persian: Mitra is optically small, so it gets a larger base size.
+   Latin words (C++, ETABS…) inside Persian text use Inter; Persian falls through to IRMitra. */
+html[data-lang="fa"] { font-size: 19px; }
+html[data-lang="fa"] body { font-family: "Inter Fa", "IRMitra", Tahoma, serif; font-size: 1rem; line-height: 1.85; }
+html[data-lang="fa"] .link, html[data-lang="fa"] .ltr-in-rtl { font-family: "Inter Fa", sans-serif; }
 .ltr-in-rtl { font-family: "Inter", sans-serif; text-align: left; }
 
 a { color: var(--accent); text-decoration: none; }
@@ -104,13 +122,13 @@ html[data-lang="en"] .only-fa { display: none !important; }
   width: 38px; height: 38px; padding: 0;
   border: 1px solid var(--line); border-radius: 10px;
   background: var(--surface); color: var(--text);
-  font: 600 .85rem "Inter", "Vazirmatn", sans-serif;
+  font: 600 .85rem "Inter", "IRMitra", sans-serif;
   cursor: pointer; transition: border-color .2s, transform .1s;
 }
 .ctl:hover { border-color: var(--accent); }
 .ctl:active { transform: scale(.95); }
 .ctl:focus-visible, .btn:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-#langBtn [lang="fa"] { font-family: "Vazirmatn", sans-serif; font-size: .95rem; unicode-bidi: isolate; }
+#langBtn [lang="fa"] { font-family: "IRMitra", serif; font-size: 1.15rem; font-weight: 700; unicode-bidi: isolate; }
 
 /* Theme icon: show sun when dark is active, moon when light */
 .ic-sun { display: none; }
